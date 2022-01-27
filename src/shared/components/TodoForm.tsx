@@ -40,6 +40,8 @@ const TodoForm = ({
         }}
         type="text"
         className="mx-2"
+        aria-label="TODO"
+        placeholder="Write TODO"
       />
       <Button onClick={todoItem.id ? editTodo : saveTodo} type="button">
         Save
