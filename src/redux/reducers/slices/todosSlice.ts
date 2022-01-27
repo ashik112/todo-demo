@@ -35,7 +35,7 @@ const slice = createSlice({
     },
     deleteTodo(state: IState, action: PayloadAction<any>): void {
       state.todos = state.todos.filter(
-        (todo: ITodo) => todo.id !== action.payload
+        (todo: ITodo) => todo.id !== action.payload.id
       );
     },
     updateTodo(state: IState, action: PayloadAction<any>): void {
@@ -67,4 +67,11 @@ export const updateTodo =
   (todo: ITodo): AppThunk =>
   async (dispatch): Promise<void> => {
     dispatch(slice.actions.updateTodo(todo));
+  };
+
+
+export const deleteTodo =
+  (todo: ITodo): AppThunk =>
+  async (dispatch): Promise<void> => {
+    dispatch(slice.actions.deleteTodo(todo));
   };
