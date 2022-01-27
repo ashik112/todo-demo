@@ -2,8 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { addTodo, updateTodo } from "../../redux/reducers/slices/todosSlice";
 import { useAppDispatch } from "../../hooks";
+import { ITodo } from "../../interfaces";
 
-const TodoForm = ({ todoItem, onSave = () => {} }: any) => {
+const TodoForm = ({
+  todoItem,
+  onSave = () => {},
+}: {
+  todoItem: ITodo;
+  onSave?: Function;
+}) => {
   const [todo, setTodo] = useState<string>("");
   const dispatch = useAppDispatch();
   const saveTodo = () => {

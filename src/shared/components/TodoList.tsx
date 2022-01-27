@@ -1,5 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../../hooks";
+import { ITodo } from "../../interfaces";
 import TodoItem from "./TodoItem";
 
 const TodoList = () => {
@@ -7,7 +8,7 @@ const TodoList = () => {
   return (
     <div>
       <ul>
-        {todos.map((todoItem: any) => {
+        {todos.map((todoItem: ITodo) => {
           return (
             <li key={todoItem.id}>
               <TodoItem todo={todoItem} />
