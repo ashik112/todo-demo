@@ -10,7 +10,7 @@ function nextTodoId(todos: any) {
     (maxId: number, todo: any) => Math.max(todo.id, maxId),
     -1
   );
-  return maxId + 1;
+  return maxId + 2;
 }
 
 const slice = createSlice({
@@ -18,17 +18,35 @@ const slice = createSlice({
   initialState,
   reducers: {
     addTodo(state: any, action: PayloadAction<any>): void {
-      state = [
-        ...state,
+      state.todos = [
         {
-          id: nextTodoId(state),
+          id: nextTodoId(state.todos),
           text: action.payload,
-          completed: false,
+          createdAt: new Date(),
         },
+        ...state.todos,
       ];
     },
     deleteTodo(state: any, action: PayloadAction<any>): void {
-      state = state.filter((todo: any) => todo.id !== action.payload);
+      state.todos = state.todos.filter(
+        (todo: any) => todo.id !== action.payload
+      );
+    },
+    updateTodo(state: any, action: PayloadAction<any>): void {
+      console.log(action.payload);
+      let list = JSON.parse(JSON.stringify(state.todos));
+      list = list.map((item: any) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            text: action.payload.text,
+          };
+        }
+        return item;
+      });
+      console.log(list);
+      state.todos = [];
+      state.todos = [...list];
     },
   },
 });
@@ -36,7 +54,13 @@ const slice = createSlice({
 export const { reducer } = slice;
 
 export const addTodo =
-  (todo: any): AppThunk =>
+  (todo: string): AppThunk =>
   async (dispatch): Promise<void> => {
     dispatch(slice.actions.addTodo(todo));
+  };
+
+export const updateTodo =
+  (todo: string): AppThunk =>
+  async (dispatch): Promise<void> => {
+    dispatch(slice.actions.updateTodo(todo));
   };

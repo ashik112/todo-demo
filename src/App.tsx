@@ -1,21 +1,21 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import TodoForm from "./shared/components/TodoForm";
+import TodoList from "./shared/components/TodoList";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        TODOS
-        <input type="text" />
-        <button type="button">Save</button>
-        <div>
-          <ul>
-            <li>
-              Complete assignment: Jan 26,2022 18:42
-              <button type="button">Delete</button>
-              <button type="button">Edit</button>
-            </li>
-          </ul>
+        <h1>TODOS</h1>
+        <TodoForm
+          todoItem={{
+            id: null,
+            text: "",
+          }}
+        />
+        <div className="my-5">
+          <TodoList />
         </div>
       </header>
     </div>
