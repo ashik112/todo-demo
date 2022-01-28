@@ -3,7 +3,7 @@ import "./App.css";
 import TodoForm from "./shared/components/TodoForm";
 import TodoList from "./shared/components/TodoList";
 
-function App() {
+export const  App = () => {
   return (
     <div className="App">
       <header className="App-header">
