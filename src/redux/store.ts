@@ -13,7 +13,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  devTools: process.env.REACT_APP_ENABLE_REDUX_DEV_TOOLS === "true",
+  // devTools: process.env.REACT_APP_ENABLE_REDUX_DEV_TOOLS === "true",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

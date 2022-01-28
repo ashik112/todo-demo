@@ -14,12 +14,12 @@ const initialState: IState = {
 function nextTodoId(todos: ITodos) {
   const maxId = todos.reduce(
     (maxId: number, todo: ITodo) => Math.max(todo.id || 0, maxId),
-    -1
+    0
   );
-  return maxId + 2;
+  return maxId + 1;
 }
 
-const slice = createSlice({
+export const slice = createSlice({
   name: "todos",
   initialState,
   reducers: {
@@ -68,7 +68,6 @@ export const updateTodo =
   async (dispatch): Promise<void> => {
     dispatch(slice.actions.updateTodo(todo));
   };
-
 
 export const deleteTodo =
   (todo: ITodo): AppThunk =>
